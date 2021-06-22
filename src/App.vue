@@ -1,28 +1,27 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <StorePicker />
+    <notifications group="foo" />
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import StorePicker from './components/StorePicker.vue';
+import './css/style.css';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    StorePicker
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-family: 'haymakerregular', sans-serif;
 }
+
 </style>
