@@ -1,15 +1,17 @@
 <template>
   <nav id="navbar">
-      <h2>Welcome to Nike</h2>
+      <h2>Welcome to {{mySite.name}}</h2>
       <ul>
           <li><router-link to="/" exact>Home</router-link></li>
-          <li><router-link to="/cart" exact>Cart</router-link></li>
+          <li @click="toggleDrawer">Cart</li>
           <li><router-link to="/about" exact>About Us</router-link></li>
       </ul>
   </nav>
 </template>
 
 <script>
+
+import { mapState } from "vuex";
 
 export default {
   name: 'StoreHeader',
@@ -18,10 +20,9 @@ export default {
   data: () => ({
    
   }),
-  props: {
-    
-  },
+  props: ['toggleDrawer'],
   computed: {
+      ...mapState('sitesModule', ['mySite']),
     
   },
   methods: {
@@ -54,14 +55,17 @@ export default {
         margin-top: 10px;
     }
 
-    nav ul a {
+    nav ul li,
+    nav ul li a {
         text-decoration: none;
         color: #FFF;
     }
 
-    nav ul a:hover {
+    nav ul li:hover,
+    nav ul li a:hover {
         color: #d6ff04;
         text-decoration: underline;
+        cursor: pointer;
     }
 
 </style>

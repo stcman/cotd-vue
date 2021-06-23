@@ -3,5 +3,5 @@ import StorePage from './components/StorePage';
 
 export default [
     {path: '/', component: StorePicker},
-    {path: '/store', component: StorePage}
+    {path: '/store/:name', component: StorePage}
 ]

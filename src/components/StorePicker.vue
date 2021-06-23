@@ -21,26 +21,22 @@
 export default {
   name: 'StorePicker',
   data: () => ({
-   storeNames: ['Nike', 'Puma', 'Supra', 'Gucci'],
+   storeNames: ['nike', 'jordan', 'converse'],
    storeConfig: {
-     Nike: {
-       name:'Nike',
+     nike: {
+       name:'nike',
        imgPath: 'nikeLogo.png'
      },
-     Puma: {
-       name:'Puma',
-       imgPath: 'pumaLogo.png'
+     jordan: {
+       name:'jordan',
+       imgPath: 'jordanLogo.jpg'
      },
-     Supra: {
-       name:'Supra',
-       imgPath: 'supraLogo.jpeg'
-     },
-     Gucci: {
-       name:'Gucci',
-       imgPath: 'gucciLogo.jpg'
+     converse: {
+       name:'converse',
+       imgPath: 'converseLogo.jpg'
      }
    },
-   select: "Nike" 
+   select: "nike" 
   }),
   props: {
     msg: String
@@ -65,8 +61,7 @@ export default {
 
       this.$store.commit('globalModule/updateActiveStep', 1);
       this.$store.commit('sitesModule/updateMySite', this.activeSite);
-
-      this.$router.push('store');
+      this.$router.push(`store/${this.activeSite.name}`);
 
     }
   }

@@ -1,36 +1,71 @@
 <template>
   <div id="myStore">
-    <StoreHeader />
-    <div class="body">
+    <StoreHeader :toggleDrawer="toggleDrawer" />
+    <!-- <div class="body">
         <div>1</div>
         <div>2</div>
-    </div>
-    <StoreLoader v-if="false" />
+    </div> -->
+
+    <v-sheet
+    height="100vh"
+    class="overflow-hidden"
+    style="position: relative;"
+  >
+    <v-container class="fill-height">
+      <v-row
+        align="center"
+        justify="center"
+      >
+        
+      </v-row>
+    </v-container>
+
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+      right
+    >
+      <p>TESTING</p>
+    </v-navigation-drawer>
+  </v-sheet>
+    
   </div>
 </template>
 
 <script>
-
+import { mapState } from "vuex";
 import StoreHeader from './StoreHeader.vue';
-import StoreLoader from './StoreLoader.vue';
 
 export default {
   name: 'StorePage',
   components: {
-    StoreLoader,
     StoreHeader
   },
   data: () => ({
-   
+   drawer: null,
+        items: [
+          { title: 'Home', icon: 'mdi-view-dashboard' },
+          { title: 'About', icon: 'mdi-forum' },
+        ],
   }),
   props: {
     
   },
   computed: {
+      ...mapState('sitesModule', ['mySite', 'products']),
+      activeStoreItems: function(){
+          return this.products.filter(el => el.vendor.toLowerCase() == this.mySite.name)
+      }
     
   },
   methods: {
-    
+    toggleDrawer: function(){
+        this.drawer = !this.drawer;
+    }
+  },
+  created: function() {
+    this.$store.dispatch('sitesModule/setProducts');
   }
 }
 </script>
@@ -40,5 +75,9 @@ export default {
 .body {
     border: 5px solid #000;
     height: 100vh;
+}
+
+.v-navigation-drawer {
+    width: 65% !important;
 }
 </style>
