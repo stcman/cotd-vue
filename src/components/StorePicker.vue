@@ -2,10 +2,11 @@
   <div class="storeContainer">
     <form class= "store-selector" @submit="checkForm">
         <h2>Please Select A Store</h2>
+        <img :src="require(`../assets/${activeSite.imgPath}`)">
         <div id="storeInputs">
             <v-select
               v-model="select"
-              :items="items"
+              :items="storeNames"
               label="Store"
               dense
             ></v-select>
@@ -16,17 +17,38 @@
 </template>
 
 <script>
+
 export default {
   name: 'StorePicker',
   data: () => ({
-   items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-   select: "" 
+   storeNames: ['Nike', 'Puma', 'Supra', 'Gucci'],
+   storeConfig: {
+     Nike: {
+       name:'Nike',
+       imgPath: 'nikeLogo.png'
+     },
+     Puma: {
+       name:'Puma',
+       imgPath: 'pumaLogo.png'
+     },
+     Supra: {
+       name:'Supra',
+       imgPath: 'supraLogo.jpeg'
+     },
+     Gucci: {
+       name:'Gucci',
+       imgPath: 'gucciLogo.jpg'
+     }
+   },
+   select: "Nike" 
   }),
   props: {
     msg: String
   },
   computed: {
-     
+    activeSite: function(){
+      return this.storeConfig[this.select];
+    }
   },
   methods: {
     checkForm: function(e){
@@ -41,6 +63,11 @@ export default {
         });
       }
 
+      this.$store.commit('globalModule/updateActiveStep', 1);
+      this.$store.commit('sitesModule/updateMySite', this.activeSite);
+
+      this.$router.push('store');
+
     }
   }
 }
@@ -48,6 +75,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+img {
+    width: 300px;
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+button {
+  background: #000;
+  border-radius: 2px;
+  color: #FFF;
+  padding: 10px;
+}
 
 .store-selector {
     background: #fff;
