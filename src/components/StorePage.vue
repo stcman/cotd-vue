@@ -1,23 +1,33 @@
 <template>
   <div id="myStore">
     <StoreHeader :toggleDrawer="toggleDrawer" />
-    <!-- <div class="body">
-        <div>1</div>
-        <div>2</div>
-    </div> -->
 
     <v-sheet
-    height="100vh"
     class="overflow-hidden"
     style="position: relative;"
   >
     <v-container class="fill-height">
-      <v-row
-        align="center"
-        justify="center"
-      >
-        
-      </v-row>
+      <v-layout row wrap>
+        <v-flex xs12 sm6 md4 lg3 v-for="product in activeStoreItems" :key="product.id">
+          <v-card class="text-xs-center ma-3">
+            <v-responsive class="pt-4">
+              <v-img
+                height="250"
+                :src="product.images[0].src"
+              ></v-img>
+            </v-responsive>
+            <v-card-text>
+              <div class="r">{{product.title}}</div>
+              <span>${{product.variants[0].price}}</span>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn depressed color="#d6ff04">
+                <span>Add to Cart</span>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-flex>
+      </v-layout>
     </v-container>
 
     <v-navigation-drawer
@@ -78,6 +88,6 @@ export default {
 }
 
 .v-navigation-drawer {
-    width: 65% !important;
+    width: 50% !important;
 }
 </style>
