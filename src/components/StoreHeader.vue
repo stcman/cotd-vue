@@ -37,6 +37,7 @@ export default {
     h2 {
         text-align: center;
         color: #FFF;
+        font-size: 50px;
     }
 
     nav {
