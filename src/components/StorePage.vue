@@ -17,11 +17,11 @@
               ></v-img>
             </v-responsive>
             <v-card-text>
-              <div class="r">{{product.title}}</div>
+              <div >{{product.title}}</div>
               <span>${{product.variants[0].price}}</span>
             </v-card-text>
             <v-card-actions>
-              <v-btn depressed color="#d6ff04">
+              <v-btn @click="addToCart(product)" depressed color="#d6ff04">
                 <span>Add to Cart</span>
               </v-btn>
             </v-card-actions>
@@ -32,11 +32,11 @@
 
     <v-navigation-drawer
       v-model="drawer"
-      absolute
+      fixed
       temporary
       right
     >
-      <p>TESTING</p>
+      <Cart :toggleDrawer="toggleDrawer" />
     </v-navigation-drawer>
   </v-sheet>
     
@@ -46,11 +46,13 @@
 <script>
 import { mapState } from "vuex";
 import StoreHeader from './StoreHeader.vue';
+import Cart from './Cart.vue';
 
 export default {
   name: 'StorePage',
   components: {
-    StoreHeader
+    StoreHeader,
+    Cart
   },
   data: () => ({
    drawer: null,
@@ -72,6 +74,10 @@ export default {
   methods: {
     toggleDrawer: function(){
         this.drawer = !this.drawer;
+    },
+    addToCart: function(item){
+      this.$store.commit('sitesModule/addToCart', {itemId: item.id, itemData: item});
+      this.drawer = true;
     }
   },
   created: function() {
@@ -88,6 +94,6 @@ export default {
 }
 
 .v-navigation-drawer {
-    width: 50% !important;
+    width: 40% !important;
 }
 </style>

@@ -12,3 +12,12 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.v-navigation-drawer__content {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+
+[data-simplebar] {
+  overflow-y: clip;
+}

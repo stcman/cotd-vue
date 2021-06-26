@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div id="main-container">
-      <StoreLoader  v-if="isLoading"/>
+      <StoreLoader  v-if="isLoading" :name="mySite.name"/>
       <router-view></router-view>
       <notifications group="foo" />
       

@@ -21,7 +21,7 @@
 export default {
   name: 'StorePicker',
   data: () => ({
-   storeNames: ['nike', 'jordan', 'converse'],
+   storeNames: ['nike', 'jordan', 'adidas', 'converse'],
    storeConfig: {
      nike: {
        name:'nike',
@@ -34,6 +34,9 @@ export default {
      converse: {
        name:'converse',
        imgPath: 'converseLogo.jpg'
+     },adidas: {
+       name:'adidas',
+       imgPath: 'adidasLogo.jpg'
      }
    },
    select: "nike" 

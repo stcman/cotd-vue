@@ -1,6 +1,6 @@
 <template>
   <nav id="navbar">
-      <h2>Welcome to {{mySite.name}}</h2>
+      <img v-if="mySite" :src="require(`../assets/${mySite.imgPath}`)">
       <ul>
           <li><router-link to="/" exact>Home</router-link></li>
           <li @click="toggleDrawer">Cart</li>
@@ -40,9 +40,15 @@ export default {
         font-size: 50px;
     }
 
+    img {
+        width: 200px;
+        margin: 0 auto;
+        display: flex;
+    }
+
     nav {
         background: #000;
-        padding: 30px 0px;
+        padding: 0px 0px 25px 0px;
     }
 
     nav ul {

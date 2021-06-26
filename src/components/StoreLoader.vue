@@ -11,9 +11,7 @@ export default {
   data: () => ({
 
   }),
-  props: {
-    name: String
-  },
+  props: ['name'],
   computed: {
     
   },
@@ -34,6 +32,7 @@ export default {
   height: 100%;
   width: 100%;
   background: #000;
+  z-index: 999;
 }
 
 #storeLoader img {

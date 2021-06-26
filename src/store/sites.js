@@ -11,7 +11,8 @@ export default {
     state: {
         mySite: {},
         isLoading: false,
-        products: []
+        products: [],
+        cartData: {}
     },
     mutations: {
         updateMySite: function(state, payload){
@@ -22,6 +23,30 @@ export default {
         },
         updateProducts: function(state, payload){
             state.products = payload;
+        },
+        addToCart: function(state, payload){
+            let newState = JSON.parse(JSON.stringify(state));
+
+            //add increase item count if exist else add new item and set count
+            if(newState.cartData[payload.itemId]){
+                newState.cartData[payload.itemId].itemCount++;
+            }else{
+                newState.cartData[payload.itemId] = payload.itemData;
+                newState.cartData[payload.itemId].itemCount = 1;
+            }
+
+            state.cartData = newState.cartData;
+        },
+        removeFromCart: function(state, payload){
+            let newState = JSON.parse(JSON.stringify(state));
+
+            if(newState.cartData[payload.itemId] && newState.cartData[payload.itemId].itemCount > 1){
+                newState.cartData[payload.itemId].itemCount--;
+            }else{
+                delete newState.cartData[payload.itemId];
+            }
+
+            state.cartData = newState.cartData;
         }
     },
     actions: {
