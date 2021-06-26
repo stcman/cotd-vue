@@ -30,7 +30,7 @@ export default {
   computed: {
       ...mapState('sitesModule', ['mySite', 'cartData']),
       cartTotal: function(){
-          const reducer = (accumulator, currentValue) => accumulator + parseFloat(currentValue.variants[0].price);
+          const reducer = (accumulator, currentValue) => accumulator + (parseFloat(currentValue.variants[0].price) * currentValue.itemCount);
           return Object.values(this.cartData).reduce(reducer, 0);
       }
     
