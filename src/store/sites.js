@@ -28,10 +28,11 @@ export default {
             let newState = JSON.parse(JSON.stringify(state));
 
             //add increase item count if exist else add new item and set count
-            if(newState.cartData[payload.itemId]){
+            if(newState.cartData[payload.itemId] && newState.cartData[payload.itemId].shoeSize == payload.shoeSize){
                 newState.cartData[payload.itemId].itemCount++;
             }else{
                 newState.cartData[payload.itemId] = payload.itemData;
+                newState.cartData[payload.itemId].shoeSize = payload.shoeSize;
                 newState.cartData[payload.itemId].itemCount = 1;
             }
 

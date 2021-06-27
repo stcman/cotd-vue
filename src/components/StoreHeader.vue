@@ -4,7 +4,7 @@
       <ul>
           <li><router-link to="/" exact>Home</router-link></li>
           <li @click="toggleDrawer">Cart</li>
-          <li><router-link to="/about" exact>About Us</router-link></li>
+          <li><router-link to="/login" exact>Login</router-link></li>
       </ul>
   </nav>
 </template>

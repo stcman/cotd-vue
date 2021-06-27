@@ -21,3 +21,12 @@
 [data-simplebar] {
   overflow-y: clip;
 }
+
+.v-navigation-drawer--bottom.v-navigation-drawer--is-mobile {
+  max-height: 100% !important;
+}
+
+.simplebar-scrollbar {
+  width: 8px;
+  left: 5px !important;
+}

@@ -5,9 +5,9 @@
             <img :src="item.images[0].src">
             <div class="item-stats">
                 <h5>{{item.title}}</h5>
-                <span>Size: 11</span>
+                <span>Size: {{item.shoeSize}}</span>
                 <span>Quantity: {{item.itemCount}}</span>
-                <button class="removeItemBtn" @click="removeItem(item.id)">Remove</button>
+                <button class="removeItemBtn" @click="removeItem(item.id, item.shoeSize)">Remove</button>
             </div>
             <div class="price">
                 ${{calcItemPrice(item.variants[0].price ,item.itemCount)}}
@@ -43,8 +43,9 @@ export default {
         let price = parseFloat(amount);
         return price * count;
     },
-    removeItem: function(itemId){
-        this.$store.commit('sitesModule/removeFromCart', {itemId});
+    removeItem: function(itemId, shoeSize){
+
+        this.$store.commit('sitesModule/removeFromCart', {itemId: `${itemId}-${shoeSize}`});
     }
   }
 }
