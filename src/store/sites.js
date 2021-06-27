@@ -12,7 +12,8 @@ export default {
         mySite: {},
         isLoading: false,
         products: [],
-        cartData: {}
+        cartData: {},
+        loginDialog: false
     },
     mutations: {
         updateMySite: function(state, payload){
@@ -23,6 +24,9 @@ export default {
         },
         updateProducts: function(state, payload){
             state.products = payload;
+        },
+        updateLoginDialog: function(state, payload){
+            state.loginDialog = payload;
         },
         addToCart: function(state, payload){
             let newState = JSON.parse(JSON.stringify(state));

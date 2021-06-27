@@ -1,21 +1,26 @@
 <template>
-  <nav id="navbar">
-      <img v-if="mySite" :src="require(`../assets/${mySite.imgPath}`)">
-      <ul>
-          <li><router-link to="/" exact>Home</router-link></li>
-          <li @click="toggleDrawer">Cart</li>
-          <li><router-link to="/login" exact>Login</router-link></li>
-      </ul>
-  </nav>
+    <div>
+        <nav id="navbar">
+        <img v-if="mySite" :src="require(`../assets/${mySite.imgPath}`)">
+            <ul>
+                <li><router-link to="/" exact>Home</router-link></li>
+                <li @click="toggleDrawer">Cart</li>
+                <li @click="toggleLoginPopup">Login</li>
+            </ul>
+        </nav>
+        <Login />
+    </div>
 </template>
 
 <script>
 
 import { mapState } from "vuex";
+import Login from './Login.vue';
 
 export default {
   name: 'StoreHeader',
   components: {
+      Login
   },
   data: () => ({
    
@@ -26,7 +31,9 @@ export default {
     
   },
   methods: {
-    
+    toggleLoginPopup: function(){
+        this.$store.commit('sitesModule/updateLoginDialog', true);
+    }
   }
 }
 </script>
@@ -60,6 +67,7 @@ export default {
         margin: 0 auto;
         padding-left: 0;
         margin-top: 10px;
+        margin-bottom: 20px;
     }
 
     nav ul li,
