@@ -24,7 +24,7 @@ export default {
     ...mapState('sitesModule', ['mySite','isLoading']),
   },
   updated: function(){
-    if(!this.mySite.name) this.$router.push('/');
+    if(!this.mySite.name) this.$router.push('/').catch(()=>{});
   }
 }
 </script>

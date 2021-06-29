@@ -1,10 +1,5 @@
 import axios from "axios";
 
-const options = {
-  method: 'GET',
-  url: 'https://www.deadstock.ca/collections/footwear/products.json?limit=250'
-};
-
 export default {
     strict: true,
     namespaced: true,
@@ -58,9 +53,9 @@ export default {
         setProducts: (ctx) => {
             if(ctx.state.products.length) return;
             ctx.commit('updateIsLoading', true);
-            axios.request(options).then(function (response) {
-                console.log(response.data.products);
-                ctx.commit('updateProducts', response.data.products);
+            axios.get("http://localhost:3001/getProducts").then(function (response) {
+                console.log(response.data);
+                ctx.commit('updateProducts', response.data);
                 ctx.commit('updateIsLoading', false);
             }).catch(function (error) {
                 console.error(error);

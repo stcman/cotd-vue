@@ -2,7 +2,7 @@
   <div class="storeContainer">
     <form class= "store-selector" @submit="checkForm">
         <h2>Please Select A Store</h2>
-        <img :src="require(`../assets/${activeSite.imgPath}`)">
+        <img v-if="activeSite.imgPath" :src="require(`../assets/${activeSite.imgPath}`)">
         <div id="storeInputs">
             <v-select
               v-model="select"
@@ -64,7 +64,7 @@ export default {
 
       this.$store.commit('globalModule/updateActiveStep', 1);
       this.$store.commit('sitesModule/updateMySite', this.activeSite);
-      this.$router.push(`store/${this.activeSite.name}`);
+      this.$router.push(`store/${this.activeSite.name}`).catch(()=>{});
 
     }
   }

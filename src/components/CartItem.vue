@@ -2,7 +2,7 @@
 <simplebar data-simplebar-auto-hide="false">
     <div class="cart-item-container">
         <div class="cart-item" v-for="item in cartData" :key="item.id">
-            <img :src="item.images[0].src">
+            <img :src="item.imageUrl">
             <div class="item-stats">
                 <h5>{{item.title}}</h5>
                 <span>Size: {{item.shoeSize}}</span>
@@ -10,7 +10,7 @@
                 <button class="removeItemBtn" @click="removeItem(item.id, item.shoeSize)">Remove</button>
             </div>
             <div class="price">
-                ${{calcItemPrice(item.variants[0].price ,item.itemCount)}}
+                ${{calcItemPrice(item.price ,item.itemCount)}}
             </div>
         </div>
         

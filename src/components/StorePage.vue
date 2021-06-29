@@ -53,7 +53,7 @@ export default {
   computed: {
       ...mapState('sitesModule', ['mySite', 'products']),
       activeStoreItems: function(){
-          return this.products.filter(el => el.vendor.toLowerCase() == this.mySite.name)
+          return this.products.filter(el => el.brand.toLowerCase() == this.mySite.name)
       }
     
   },

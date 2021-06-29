@@ -4,23 +4,23 @@
     <v-responsive class="pt-4">
         <v-img
         height="250"
-        :src="product.images[0].src"
+        :src="product.imageUrl"
         ></v-img>
     </v-responsive>
     <v-card-text>
         <div >{{product.title}}</div>
-        <span>${{product.variants[0].price}}</span>
+        <span>${{product.price}}</span>
         <v-chip-group
         v-model="chipSelection"
         active-class="black accent-4 white--text"
         column
         >
-        <v-chip x-small v-for="(size, key) in shoeSizes" :class="{disableClick: key == chipSelection}" :key="size">{{size}}</v-chip>
+        <v-chip x-small v-for="(size, key) in product.sizes" :class="{disableClick: key == chipSelection}" :key="size">{{size}}</v-chip>
 
         </v-chip-group>
     </v-card-text>
     <v-card-actions>
-        <v-btn @click="addToCart(product, shoeSizes[chipSelection])" depressed color="#d6ff04">
+        <v-btn @click="addToCart(product, product.sizes[chipSelection])" depressed color="#d6ff04">
         <span>Add to Cart</span>
         </v-btn>
     </v-card-actions>
@@ -45,7 +45,7 @@ export default {
   computed: {
       ...mapState('sitesModule', ['mySite', 'products']),
       activeStoreItems: function(){
-          return this.products.filter(el => el.vendor.toLowerCase() == this.mySite.name)
+          return this.products.filter(el => el.brand.toLowerCase() == this.mySite.name)
       }
     
   },
