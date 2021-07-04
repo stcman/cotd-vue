@@ -1,4 +1,4 @@
-# vue-cotd
+# kickz
 
 ## Project setup
 ```
