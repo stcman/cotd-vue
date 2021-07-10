@@ -1,4 +1,4 @@
-import axios from "axios";
+import {axiosWrapper} from './common/helpers';
 
 export default {
     strict: true,
@@ -50,17 +50,11 @@ export default {
         }
     },
     actions: {
-        setProducts: (ctx) => {
+        setProducts: async (ctx) => {
             if(ctx.state.products.length) return;
             ctx.commit('updateIsLoading', true);
-            axios.get("http://localhost:3001/getProducts").then(function (response) {
-                console.log(response.data);
-                ctx.commit('updateProducts', response.data);
-                ctx.commit('updateIsLoading', false);
-            }).catch(function (error) {
-                console.error(error);
-                ctx.commit('updateIsLoading', false);
-            });
+            const [response, error] = await axiosWrapper(ctx, {method: "GET", url: "http://localhost:3001/getProducts"});
+            if(!error) ctx.commit('updateProducts', response.data);
         }
     },
 }

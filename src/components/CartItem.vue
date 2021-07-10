@@ -1,7 +1,7 @@
 <template>
 <simplebar data-simplebar-auto-hide="false">
     <div class="cart-item-container">
-        <div class="cart-item" v-for="item in cartData" :key="item.id">
+        <div class="cart-item" v-for="item in cartData" :key="`${item.id}-${item.shoeSize}`">
             <img :src="item.imageUrl">
             <div class="item-stats">
                 <h5>{{item.title}}</h5>
